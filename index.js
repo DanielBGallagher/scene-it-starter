@@ -5,7 +5,7 @@ $(document).ready(function(){
         const movieHTML = movieArray.map(currentMovie => {
             
             $(".movie").append(`<div class="card" style="width: 18rem;"><a href = "https://www.imdb.com/title/${currentMovie.imdbID}" target = "_blank"><img class="card-img-top" src="${currentMovie.Poster}" alt="Card image cap"></a> <div class="card-body"> <h5 class="card-title">${currentMovie.Title}
-            <span class = "year">${currentMovie.Year}</h5><button type = "button" onclick = "saveToWatchList('${currentMovie.imdbID}')" class="btn btn-primary">Add</button> `)
+            <span class = "year">${currentMovie.Year}</h5><button type = "button" id = "${currentMovie.imdbID}"onclick = "saveToWatchList('${currentMovie.imdbID}')" class="btn btn-primary">Add</button> `)
             
         });
     }
@@ -45,6 +45,7 @@ function saveToWatchList(imdbID){
         watchlistJSON = JSON.stringify(watchlist);
 
         localStorage.setItem('watchlist', watchlistJSON);
+        $(`#${imdbID}`).attr("disabled", true);
     })
     
 
